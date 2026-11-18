@@ -51,7 +51,7 @@ type PublishRequest struct {
 }
 
 type RetrieveRequest struct {
-	SubscriberId string `json:"sub_id"`
+	SubscriberId string `json:"subscriberId"`
 	Topic        string `json:"topic"`
 	StartDate    string `json:"startDate"`
 }

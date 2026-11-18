@@ -111,7 +111,7 @@ Retrieve messages for a subscriber and topic published from a given date.
 ```bash
 curl -G http://localhost:3000/v1/retrieve \
   --data-urlencode 'topic=orders' \
-  --data-urlencode 'subId=unique-subscriber-id' \
+  --data-urlencode 'subscriberId=unique-subscriber-id' \
   --data-urlencode 'startDate=2024-01-01T00:00:00Z'
 ```
 
