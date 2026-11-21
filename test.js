@@ -13,7 +13,6 @@ export const options = {
 
 const endpoints = [
     "http://localhost:4001/webhook",
-    "http://localhost:4002/webhook"
 ]
 const topicSets = [
     ["orders"], ["payments"], ["metadata"], ["notification"]
