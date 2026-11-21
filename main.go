@@ -5,6 +5,7 @@ import (
 	"Message-Queue/messaging"
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/labstack/echo"
 )
@@ -18,6 +19,9 @@ func main() {
 	e.POST("/v1/unsunscribe", handler.Unsubscribe)
 	e.POST("/v1/publish", handler.Publish)
 	e.GET("/v1/retrieve", handler.Retrieve)
+	e.GET("/v1/health", func(c echo.Context) error {
+		return c.NoContent(http.StatusOK)
+	})
 
 	// START THE SERVER
 	fmt.Println("Server is running at port 3000")

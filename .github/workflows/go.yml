@@ -27,6 +27,18 @@ jobs:
       - name: Test
         run: go test ./...
 
+      - name: Start API server
+        run: |
+          go run . > server.log 2>&1 &
+          for i in {1..30}; do
+            if curl --fail http://localhost:3000/health; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat server.log
+          exit 1
+
       - name: Setup K6
         uses: grafana/setup-k6-action@v1
 
