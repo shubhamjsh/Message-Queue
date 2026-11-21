@@ -39,6 +39,12 @@ jobs:
           cat server.log
           exit 1
 
+      - name: Start webhook receivers
+        run: |
+          go run ./webhook --port 4001 > webhook-4001.log 2>&1
+          sleep 2
+          cat webhook-4001.log
+
       - name: Setup K6
         uses: grafana/setup-k6-action@v1
 
