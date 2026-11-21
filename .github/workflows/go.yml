@@ -31,7 +31,7 @@ jobs:
         run: |
           go run . > server.log 2>&1 &
           for i in {1..30}; do
-            if curl --fail http://localhost:3000/health; then
+            if curl --fail http://localhost:3000/v1/health; then
               exit 0
             fi
             sleep 1
