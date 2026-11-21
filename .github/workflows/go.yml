@@ -40,29 +40,7 @@ jobs:
           exit 1
 
       - name: Start webhook receivers
-        run: |
-          go run ./webhook > webhook.log 2>&1
-          WEBHOOK_PID=$!
-          for i in {1..30}; do
-            if ! kill -0 "$WEBHOOK_PID" 2>/dev/null; then
-              cat webhook.log
-              exit 1
-            fi
-          
-            if curl --silent --output /dev/null \
-              --requst POST \
-              --data '{}' \
-              http://localhost:4001/webhook; then
-              echo "Webhook ewceivwe is ready"
-              exit 0
-            fi
-          
-            sleep 1
-          done
-          
-          cat webhook.log
-          echo "Webhook receiver not ready"
-          exit 1
+        run: go run ./webhook > webhook.log 2>&1 &
 
       - name: Setup K6
         uses: grafana/setup-k6-action@v1
